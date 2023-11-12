@@ -12,15 +12,19 @@ const wishes = [
 const App = () => (
     <div>
         <h1>My Wishlist</h1>
-        <fieldset>
-            <legend>New wish</legend>
-            <input placeholder="Enter your wish here"/>
+        <fieldset className='wish-input'>
+            <legend className='wish-input__label'>New wish</legend>
+            <input className='wish-input__field' placeholder="Enter your wish here"/>
         </fieldset>
-        <ul>
-          {wishes.map(wish => (
-            <li>{wish.text}</li>
-          ))}
+        <ul className='wish-list'>
+          {wishes.map(( {text, done}, i) =>
+            <li key={text} className={`wish-list__item ${done ? 'wish-list__item--done' : ''}`}>
+              <input id={`wish${i}`} type="checkbox" checked={done} />
+              <label htmlFor={`wish${i}`}>{text}</label>
+            </li>
+          )}
         </ul>
+        <button className='wish-clear' type="button"> Archive done</button>
     </div>
 )
 
