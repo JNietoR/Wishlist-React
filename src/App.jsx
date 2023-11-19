@@ -1,8 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import WishInput from './WishInput';
+import classNames from 'classnames';
 
 
 const wishes = [
@@ -17,12 +15,16 @@ const App = () => (
         <WishInput />
         
         <ul className='wish-list'>
-          {wishes.map(( {text, done}, i) =>
-            <li key={text} className={`wish-list__item ${done ? 'wish-list__item--done' : ''}`}>
+          {wishes.map(( {text, done}, i) => (
+            <li 
+            key={text}
+            className={classNames('wish-list__item', {
+                'wish-list__item--done' : done,
+            })}>
               <input id={`wish${i}`} type="checkbox" checked={done} />
               <label htmlFor={`wish${i}`}>{text}</label>
             </li>
-          )}
+          ))}
         </ul>
         <button className='wish-clear' type="button"> Archive done</button>
     </div>
